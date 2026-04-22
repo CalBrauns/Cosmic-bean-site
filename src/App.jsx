@@ -36,8 +36,8 @@ function ShootingStars() {
       top:      `${-15 + Math.random() * 10}%`,
       left:     `${-20 + Math.random() * 90}%`,
       width:    `${80 + Math.floor(Math.random() * 100)}px`,
-      duration: `${(10 + Math.random() * 14).toFixed(1)}s`,
-      delay:    `${-(Math.random() * 20).toFixed(1)}s`,
+      duration: `${(28 + Math.random() * 28).toFixed(1)}s`,
+      delay:    `${-(Math.random() * 40).toFixed(1)}s`,
     })), [])
 
   return (
