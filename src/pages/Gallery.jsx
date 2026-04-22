@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 const GALLERY_ITEMS = [
   { id: 1,  label: 'The Main Floor',         emoji: '🎮', color: '#39ff14',  desc: 'Arcade machines lined wall to wall' },
   { id: 2,  label: 'Nebula Mocha Bar',        emoji: '☕', color: '#bf00ff',  desc: 'Our signature purple espresso station' },
@@ -16,29 +18,40 @@ const GALLERY_ITEMS = [
 export default function Gallery() {
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '60px 24px' }}>
-      <p className="neon-red font-pixel" style={{ fontSize: '0.55rem', letterSpacing: '0.2em', marginBottom: 12 }}>
-        ── VISUAL TRANSMISSIONS ──
-      </p>
-      <h1
-        className="neon-green"
-        style={{ fontFamily: 'Orbitron, sans-serif', fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 900, letterSpacing: '0.06em', marginBottom: 16 }}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        GALLERY
-      </h1>
-      <p style={{ color: '#666', fontSize: '0.85rem', marginBottom: 48 }}>
-        A peek inside Cosmic Bean. Photos by our regulars and the Martian crew.
-      </p>
+        <p className="neon-red font-pixel" style={{ fontSize: '0.55rem', letterSpacing: '0.2em', marginBottom: 12 }}>
+          ── VISUAL TRANSMISSIONS ──
+        </p>
+        <h1 className="neon-green" style={{ fontFamily: 'Orbitron, sans-serif', fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 900, letterSpacing: '0.06em', marginBottom: 16 }}>
+          GALLERY
+        </h1>
+        <p style={{ color: '#666', fontSize: '0.85rem', marginBottom: 48 }}>
+          A peek inside Cosmic Bean. Photos by our regulars and the Martian crew.
+        </p>
+      </motion.div>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-          gap: 16,
-        }}
+      <motion.div
+        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 16 }}
+        initial="hidden"
+        animate="show"
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
       >
         {GALLERY_ITEMS.map((item, i) => (
-          <div
+          <motion.div
             key={item.id}
+            variants={{
+              hidden: { opacity: 0, scale: 0.85 },
+              show:   { opacity: 1, scale: 1, transition: { duration: 0.45, ease: 'easeOut' } },
+            }}
+            whileHover={{
+              scale: 1.04,
+              boxShadow: `0 0 28px ${item.color}`,
+              transition: { duration: 0.2 },
+            }}
             className="comic-card"
             style={{
               borderColor: item.color,
@@ -52,52 +65,37 @@ export default function Gallery() {
               padding: 24,
               background: `linear-gradient(135deg, #0d0d1f 0%, ${item.color}08 100%)`,
               cursor: 'pointer',
-              transition: 'transform 0.2s, box-shadow 0.2s',
               position: 'relative',
               overflow: 'hidden',
             }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = 'scale(1.02)'
-              e.currentTarget.style.boxShadow = `0 0 20px ${item.color}`
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = 'scale(1)'
-              e.currentTarget.style.boxShadow = `0 0 8px ${item.color}, inset 0 0 8px ${item.color}18`
-            }}
           >
-            <span style={{ fontSize: '3.5rem' }}>{item.emoji}</span>
-            <p
-              className="font-pixel"
-              style={{ color: item.color, fontSize: '0.5rem', letterSpacing: '0.1em', textAlign: 'center', textShadow: `0 0 6px ${item.color}` }}
+            <motion.span
+              style={{ fontSize: '3.5rem' }}
+              animate={{ rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 4, repeat: Infinity, repeatDelay: Math.random() * 3 + 1 }}
             >
+              {item.emoji}
+            </motion.span>
+            <p className="font-pixel" style={{ color: item.color, fontSize: '0.5rem', letterSpacing: '0.1em', textAlign: 'center', textShadow: `0 0 6px ${item.color}` }}>
               {item.label}
             </p>
             <p style={{ color: '#666', fontSize: '0.7rem', textAlign: 'center' }}>{item.desc}</p>
-
-            {/* Corner tag */}
-            <span
-              className="font-pixel"
-              style={{
-                position: 'absolute',
-                top: 8,
-                right: 8,
-                fontSize: '0.4rem',
-                color: item.color,
-                opacity: 0.6,
-              }}
-            >
+            <span className="font-pixel" style={{ position: 'absolute', top: 8, right: 8, fontSize: '0.4rem', color: item.color, opacity: 0.6 }}>
               #{String(item.id).padStart(2, '0')}
             </span>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      <p
+      <motion.p
         className="font-pixel"
         style={{ fontSize: '0.45rem', color: '#555', marginTop: 48, letterSpacing: '0.1em', textAlign: 'center' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
       >
         ★ TAG US @COSMICBEANCOFFEE TO GET FEATURED ★
-      </p>
+      </motion.p>
     </div>
   )
 }
