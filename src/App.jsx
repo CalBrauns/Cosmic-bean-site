@@ -11,7 +11,6 @@ import Reviews from './pages/Reviews'
 export default function App() {
   return (
     <>
-      <div className="nebula-bg" />
       <div className="scanline" />
       <Navbar />
       <main style={{ paddingTop: '100px', flex: 1 }}>
