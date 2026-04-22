@@ -17,30 +17,26 @@
   body {
     background-color: #03000e;
     background-image:
-      /* ── Dark voids ── */
-      radial-gradient(ellipse 32% 28% at 38% 28%, rgba(0, 0, 4, 0.80) 0%, rgba(0, 0, 6, 0.30) 55%, transparent 100%),
-      radial-gradient(ellipse 24% 28% at 65% 58%, rgba(0, 0, 6, 0.75) 0%, rgba(0, 0, 8, 0.25) 55%, transparent 100%),
-      radial-gradient(ellipse 30% 24% at 82% 14%, rgba(0, 0, 5, 0.78) 0%, rgba(0, 0, 6, 0.28) 55%, transparent 100%),
-      radial-gradient(ellipse 26% 30% at 10% 68%, rgba(0, 0, 4, 0.75) 0%, rgba(0, 0, 5, 0.25) 55%, transparent 100%),
-      radial-gradient(ellipse 22% 20% at 52% 82%, rgba(0, 0, 5, 0.75) 0%, rgba(0, 0, 6, 0.25) 55%, transparent 100%),
-      /* ── Color orbs — expanded and soft-edged ── */
-      radial-gradient(ellipse 38% 42% at 47% 32%, rgba(145, 55, 255, 0.55) 0%, rgba(80, 10, 200, 0.25) 55%, transparent 100%),
-      radial-gradient(ellipse 30% 34% at 22% 18%, rgba(185, 18, 135, 0.52) 0%, rgba(120, 5, 90, 0.22) 55%, transparent 100%),
-      radial-gradient(ellipse 28% 30% at 72% 44%, rgba(35, 100, 220, 0.50) 0%, rgba(15, 50, 170, 0.20) 55%, transparent 100%),
-      radial-gradient(ellipse 34% 36% at 60% 72%, rgba(120, 0, 200, 0.52) 0%, rgba(70, 0, 140, 0.22) 55%, transparent 100%),
-      radial-gradient(ellipse 24% 22% at 30% 85%, rgba(0, 80, 200, 0.48) 0%, rgba(0, 40, 140, 0.20) 55%, transparent 100%),
-      radial-gradient(ellipse 28% 30% at 88% 68%, rgba(160, 20, 160, 0.50) 0%, rgba(90, 5, 110, 0.22) 55%, transparent 100%),
-      radial-gradient(ellipse 24% 28% at 15% 45%, rgba(80, 40, 220, 0.48) 0%, rgba(40, 10, 160, 0.20) 55%, transparent 100%),
-      /* ── Broad nebula clouds ── */
-      radial-gradient(ellipse 65% 50% at 54% 16%, rgba(115, 35, 225, 0.55) 0%, rgba(55, 8, 155, 0.25) 60%, transparent 100%),
-      radial-gradient(ellipse 55% 70% at 84% 40%, rgba(185, 18, 135, 0.42) 0%, rgba(130, 8, 95, 0.18) 62%, transparent 100%),
-      radial-gradient(ellipse 75% 42% at 74% 20%, rgba(35, 38, 210, 0.35) 0%, rgba(18, 18, 165, 0.15) 65%, transparent 100%),
-      radial-gradient(ellipse 70% 60% at 28% 52%, rgba(95, 55, 185, 0.38) 0%, rgba(55, 18, 145, 0.15) 68%, transparent 100%),
-      radial-gradient(ellipse 58% 65% at 14% 24%, rgba(165, 18, 165, 0.35) 0%, rgba(80, 8, 120, 0.15) 65%, transparent 100%),
-      radial-gradient(ellipse 72% 58% at 18% 78%, rgba(8, 18, 155, 0.38) 0%, rgba(4, 8, 105, 0.15) 68%, transparent 100%),
-      radial-gradient(ellipse 65% 55% at 72% 78%, rgba(78, 0, 165, 0.42) 0%, rgba(38, 0, 100, 0.18) 68%, transparent 100%),
+      /* ── Dark voids — diagonal rift upper-left, gap lower-center, edge shadows ── */
+      radial-gradient(ellipse 55% 30% at 22% 38%, rgba(0, 0, 5, 0.82) 0%, rgba(0, 0, 4, 0.20) 60%, transparent 100%),
+      radial-gradient(ellipse 40% 25% at 58% 68%, rgba(0, 0, 5, 0.78) 0%, rgba(0, 0, 4, 0.18) 60%, transparent 100%),
+      radial-gradient(ellipse 30% 55% at 96% 50%, rgba(0, 0, 6, 0.70) 0%, rgba(0, 0, 4, 0.15) 60%, transparent 100%),
+      /* ── Bright nebula core — offset right, upper third ── */
+      radial-gradient(ellipse 42% 38% at 68% 28%, rgba(155, 60, 255, 0.80) 0%, rgba(90, 15, 210, 0.48) 45%, transparent 85%),
+      /* ── Magenta arm sweeping up from lower-left ── */
+      radial-gradient(ellipse 50% 70% at 12% 75%, rgba(190, 15, 140, 0.62) 0%, rgba(130, 5, 95, 0.30) 55%, transparent 90%),
+      /* ── Blue cloud drifting in from upper-right ── */
+      radial-gradient(ellipse 55% 40% at 90% 18%, rgba(25, 70, 220, 0.58) 0%, rgba(12, 35, 170, 0.28) 55%, transparent 90%),
+      /* ── Violet haze — wide center fill ── */
+      radial-gradient(ellipse 70% 50% at 48% 44%, rgba(100, 40, 200, 0.45) 0%, rgba(55, 10, 150, 0.20) 58%, transparent 100%),
+      /* ── Pink-purple wisp — lower-right ── */
+      radial-gradient(ellipse 48% 42% at 80% 78%, rgba(155, 25, 175, 0.52) 0%, rgba(85, 5, 120, 0.24) 55%, transparent 90%),
+      /* ── Deep blue undertone — bottom edge ── */
+      radial-gradient(ellipse 80% 35% at 35% 95%, rgba(10, 20, 165, 0.55) 0%, rgba(5, 8, 110, 0.25) 58%, transparent 100%),
+      /* ── Lavender secondary cloud — mid-left ── */
+      radial-gradient(ellipse 45% 55% at 18% 45%, rgba(110, 55, 195, 0.48) 0%, rgba(60, 18, 145, 0.20) 58%, transparent 100%),
       /* ── Deep base ── */
-      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(38, 0, 75, 0.75) 0%, rgba(10, 0, 28, 0.65) 70%, transparent 100%);
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(35, 0, 70, 0.80) 0%, rgba(8, 0, 22, 0.72) 68%, transparent 100%);
     background-size: 100% 100%;
     background-attachment: fixed;
     color: #e0e0e0;
