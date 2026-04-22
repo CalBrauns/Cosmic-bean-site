@@ -15,7 +15,7 @@ const DOT_COLORS = ['#39ff14', '#bf00ff', '#ff0033', '#00bfff']
 function MarqueeLights() {
   return (
     <div style={{ display: 'flex', gap: '6px', padding: '4px 12px', overflow: 'hidden', background: 'rgba(3,0,18,0.98)' }}>
-      {Array.from({ length: 40 }).map((_, i) => (
+      {Array.from({ length: 300 }).map((_, i) => (
         <span
           key={i}
           className="marquee-dot"
