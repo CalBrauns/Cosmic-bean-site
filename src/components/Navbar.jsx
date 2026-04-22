@@ -14,7 +14,7 @@ const DOT_COLORS = ['#39ff14', '#bf00ff', '#ff0033', '#00bfff']
 
 function MarqueeLights() {
   return (
-    <div style={{ display: 'flex', gap: '6px', padding: '4px 12px', overflow: 'hidden', background: '#030308' }}>
+    <div style={{ display: 'flex', gap: '6px', padding: '4px 12px', overflow: 'hidden', background: 'rgba(3,0,18,0.98)' }}>
       {Array.from({ length: 40 }).map((_, i) => (
         <span
           key={i}
@@ -42,7 +42,7 @@ export default function Navbar() {
         position: 'fixed',
         top: 0, left: 0, right: 0,
         zIndex: 100,
-        background: 'rgba(5,5,15,0.96)',
+        background: 'rgba(4,0,22,0.92)',
         backdropFilter: 'blur(8px)',
         borderBottom: '1px solid rgba(57,255,20,0.3)',
       }}
@@ -109,7 +109,7 @@ export default function Navbar() {
       {open && (
         <div
           style={{
-            background: 'rgba(5,5,15,0.98)',
+            background: 'rgba(4,0,22,0.97)',
             padding: '16px 24px 20px',
             display: 'flex',
             flexDirection: 'column',

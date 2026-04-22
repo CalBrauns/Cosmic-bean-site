@@ -15,7 +15,17 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background-color: #05050f;
+    /* Nebula base — deep blue-purple */
+    background-color: #06001c;
+    /* Layered radial gradients to simulate nebula clouds */
+    background-image:
+      radial-gradient(ellipse 62% 52% at 14% 18%, rgba(115, 0, 210, 0.52) 0%, transparent 68%),
+      radial-gradient(ellipse 55% 48% at 84% 10%, rgba(8,  55, 175, 0.58) 0%, transparent 65%),
+      radial-gradient(ellipse 72% 58% at 52% 52%, rgba(75,  0, 155, 0.28) 0%, transparent 72%),
+      radial-gradient(ellipse 50% 58% at 16% 80%, rgba(0,  48, 148, 0.48) 0%, transparent 65%),
+      radial-gradient(ellipse 48% 42% at 88% 84%, rgba(105, 0, 175, 0.42) 0%, transparent 62%),
+      radial-gradient(ellipse 38% 34% at 64% 32%, rgba(0,  72, 145, 0.28) 0%, transparent 55%),
+      radial-gradient(ellipse 28% 22% at 38% 68%, rgba(140, 0, 195, 0.22) 0%, transparent 52%);
     color: #e0e0e0;
     font-family: 'Orbitron', sans-serif;
     min-height: 100vh;
@@ -64,17 +74,19 @@
 }
 
 /* Star twinkle */
-@keyframes twinkle { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.9; } }
+@keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 .star {
   position: absolute;
   border-radius: 9999px;
   background: white;
   animation: twinkle ease-in-out infinite;
+  box-shadow: 0 0 3px rgba(255,255,255,0.6);
 }
 
 /* Comic panel card */
 .comic-card {
-  background: #0d0d1f;
+  background: rgba(8, 2, 30, 0.82);
+  backdrop-filter: blur(4px);
   border: 2px solid;
   position: relative;
 }

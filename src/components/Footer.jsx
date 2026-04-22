@@ -4,7 +4,7 @@ const DOT_COLORS = ['#00bfff', '#bf00ff', '#ff0033', '#39ff14']
 
 function MarqueeLights() {
   return (
-    <div style={{ display: 'flex', gap: '6px', padding: '4px 12px', overflow: 'hidden', background: '#030308' }}>
+    <div style={{ display: 'flex', gap: '6px', padding: '4px 12px', overflow: 'hidden', background: 'rgba(3,0,18,0.97)' }}>
       {Array.from({ length: 40 }).map((_, i) => (
         <span
           key={i}
@@ -26,7 +26,7 @@ function MarqueeLights() {
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#030308', borderTop: '1px solid rgba(57,255,20,0.2)', marginTop: 'auto' }}>
+    <footer style={{ background: 'rgba(3,0,18,0.97)', borderTop: '1px solid rgba(57,255,20,0.2)', marginTop: 'auto' }}>
       <MarqueeLights />
 
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '40px 24px 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 32 }}>
