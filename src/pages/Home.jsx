@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
+import UFO from '../components/UFO'
 
 function StarField() {
   const stars = useMemo(() =>
@@ -71,6 +72,7 @@ export default function Home() {
         }}
       >
         <StarField />
+        <UFO />
 
         <motion.p
           className="neon-purple font-pixel"
