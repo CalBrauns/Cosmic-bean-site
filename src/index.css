@@ -165,3 +165,19 @@
   margin: 0;
 }
 
+/* Shooting stars */
+@keyframes shoot {
+  0%, 87%   { opacity: 0; transform: rotate(-35deg) translateX(0); }
+  89%       { opacity: 1; transform: rotate(-35deg) translateX(0); }
+  96%       { opacity: 0; transform: rotate(-35deg) translateX(650px); }
+  97%, 100% { opacity: 0; transform: rotate(-35deg) translateX(0); }
+}
+.shooting-star {
+  position: absolute;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 35%, rgba(255,255,255,0.95) 100%);
+  border-radius: 999px;
+  transform-origin: left center;
+  animation: shoot linear infinite;
+}
+

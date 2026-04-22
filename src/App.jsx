@@ -29,10 +29,31 @@ function StarField() {
   )
 }
 
+function ShootingStars() {
+  const stars = useMemo(() =>
+    Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      top:      `${2  + Math.random() * 55}%`,
+      left:     `${-5 + Math.random() * 65}%`,
+      width:    `${80 + Math.floor(Math.random() * 100)}px`,
+      duration: `${(10 + Math.random() * 14).toFixed(1)}s`,
+      delay:    `${-(Math.random() * 20).toFixed(1)}s`,
+    })), [])
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
+      {stars.map(s => (
+        <div key={s.id} className="shooting-star" style={{ top: s.top, left: s.left, width: s.width, animationDuration: s.duration, animationDelay: s.delay }} />
+      ))}
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <>
       <StarField />
+      <ShootingStars />
       <div className="scanline" />
       <Navbar />
       <main style={{ paddingTop: '100px', flex: 1 }}>
