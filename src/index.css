@@ -167,10 +167,10 @@
 
 /* Shooting stars */
 @keyframes shoot {
-  0%, 87%   { opacity: 0; transform: rotate(-35deg) translateX(0); }
-  89%       { opacity: 1; transform: rotate(-35deg) translateX(0); }
-  96%       { opacity: 0; transform: rotate(-35deg) translateX(650px); }
-  97%, 100% { opacity: 0; transform: rotate(-35deg) translateX(0); }
+  0%, 87%   { opacity: 0; transform: rotate(35deg) translateX(0); }
+  89%       { opacity: 1; transform: rotate(35deg) translateX(0); }
+  96%       { opacity: 0; transform: rotate(35deg) translateX(800px); }
+  97%, 100% { opacity: 0; transform: rotate(35deg) translateX(0); }
 }
 .shooting-star {
   position: absolute;
