@@ -15,16 +15,30 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background-color: #06001c;
+    background-color: #03000e;
     background-image:
-      /* Subtle color tint to keep neon palette cohesive over the photo */
-      radial-gradient(ellipse 70% 60% at 20% 20%, rgba(80, 0, 160, 0.35) 0%, transparent 65%),
-      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0, 40, 130, 0.35) 0%, transparent 60%),
-      linear-gradient(180deg, rgba(6,0,28,0.18) 0%, rgba(6,0,28,0.12) 100%),
-      url('/nebula.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+      /* Bright violet-blue nebula core, upper-center */
+      radial-gradient(ellipse 48% 38% at 54% 16%, rgba(115, 35, 225, 0.80) 0%, rgba(55, 8, 155, 0.50) 42%, transparent 75%),
+      /* Magenta-pink nebula arm, right */
+      radial-gradient(ellipse 38% 58% at 84% 40%, rgba(185, 18, 135, 0.60) 0%, rgba(135, 8, 95, 0.38) 48%, transparent 75%),
+      /* Blue-purple wisp sweeping upper-right */
+      radial-gradient(ellipse 62% 32% at 74% 20%, rgba(35, 38, 210, 0.50) 0%, rgba(18, 18, 165, 0.28) 52%, transparent 80%),
+      /* Soft lavender cloud, center-left */
+      radial-gradient(ellipse 58% 48% at 28% 52%, rgba(95, 55, 185, 0.50) 0%, rgba(55, 18, 145, 0.28) 58%, transparent 85%),
+      /* Pinkish-magenta bloom, upper-left */
+      radial-gradient(ellipse 42% 52% at 14% 24%, rgba(165, 18, 165, 0.50) 0%, rgba(80, 8, 120, 0.28) 52%, transparent 80%),
+      /* Dense purple nebula node, center */
+      radial-gradient(ellipse 28% 22% at 47% 32%, rgba(145, 55, 255, 0.65) 0%, rgba(78, 18, 205, 0.38) 48%, transparent 75%),
+      /* Deep blue undertone, lower-left */
+      radial-gradient(ellipse 58% 48% at 18% 78%, rgba(8, 18, 155, 0.50) 0%, rgba(4, 8, 105, 0.28) 58%, transparent 85%),
+      /* Secondary purple bloom, lower-right */
+      radial-gradient(ellipse 52% 42% at 72% 78%, rgba(78, 0, 165, 0.55) 0%, rgba(38, 0, 100, 0.32) 58%, transparent 82%),
+      /* Diffuse lavender mid-layer */
+      radial-gradient(ellipse 70% 55% at 50% 60%, rgba(68, 28, 128, 0.40) 0%, rgba(28, 5, 75, 0.22) 62%, transparent 90%),
+      /* Wide deep-purple base sweep */
+      radial-gradient(ellipse 95% 75% at 50% 45%, rgba(38, 0, 75, 0.85) 0%, rgba(12, 0, 35, 0.65) 65%, transparent 100%);
+    background-size: 100% 100%;
+    background-attachment: fixed;
     color: #e0e0e0;
     font-family: 'Orbitron', sans-serif;
     min-height: 100vh;
