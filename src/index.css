@@ -16,6 +16,16 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background-color: #03000e;
+    color: #e0e0e0;
+    font-family: 'Orbitron', sans-serif;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: #03000e;
     background-image:
       /* ── Dark voids — diagonal rift upper-left, gap lower-center, edge shadows ── */
       radial-gradient(ellipse 55% 30% at 22% 38%, rgba(0, 0, 5, 0.82) 0%, rgba(0, 0, 4, 0.20) 60%, transparent 100%),
@@ -37,11 +47,7 @@
       radial-gradient(ellipse 45% 55% at 18% 45%, rgba(110, 55, 195, 0.48) 0%, rgba(60, 18, 145, 0.20) 58%, transparent 100%),
       /* ── Deep base ── */
       radial-gradient(ellipse 100% 100% at 50% 50%, rgba(35, 0, 70, 0.80) 0%, rgba(8, 0, 22, 0.72) 68%, transparent 100%);
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    color: #e0e0e0;
-    font-family: 'Orbitron', sans-serif;
-    min-height: 100vh;
+    background-size: cover;
   }
   #root { min-height: 100vh; display: flex; flex-direction: column; }
 }
