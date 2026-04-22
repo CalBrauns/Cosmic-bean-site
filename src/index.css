@@ -28,7 +28,7 @@
       radial-gradient(ellipse 80% 35% at 35% 95%, rgba(10, 20, 165, 0.55) 0%, rgba(5, 8, 110, 0.25) 58%, transparent 100%),
       radial-gradient(ellipse 45% 55% at 18% 45%, rgba(110, 55, 195, 0.48) 0%, rgba(60, 18, 145, 0.20) 58%, transparent 100%),
       radial-gradient(ellipse 100% 100% at 50% 50%, rgba(35, 0, 70, 0.80) 0%, rgba(8, 0, 22, 0.72) 68%, transparent 100%);
-    background-size: 100% 100%;
+    background-size: 100vw 100vh;
     background-repeat: no-repeat;
     min-height: 100%;
   }

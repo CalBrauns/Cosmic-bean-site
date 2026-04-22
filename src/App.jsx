@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { useMemo } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -8,9 +9,30 @@ import Order from './pages/Order'
 import Gallery from './pages/Gallery'
 import Reviews from './pages/Reviews'
 
+function StarField() {
+  const stars = useMemo(() =>
+    Array.from({ length: 80 }, (_, i) => ({
+      id: i,
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      size: Math.random() * 2.5 + 0.5,
+      duration: `${Math.random() * 4 + 2}s`,
+      delay: `${Math.random() * 4}s`,
+    })), [])
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
+      {stars.map(s => (
+        <span key={s.id} className="star" style={{ top: s.top, left: s.left, width: s.size, height: s.size, animationDuration: s.duration, animationDelay: s.delay }} />
+      ))}
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <>
+      <StarField />
       <div className="scanline" />
       <Navbar />
       <main style={{ paddingTop: '100px', flex: 1 }}>

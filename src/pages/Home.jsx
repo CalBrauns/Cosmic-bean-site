@@ -1,32 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import UFO from '../components/UFO'
-
-function StarField() {
-  const stars = useMemo(() =>
-    Array.from({ length: 80 }, (_, i) => ({
-      id: i,
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      size: Math.random() * 2.5 + 0.5,
-      duration: `${Math.random() * 4 + 2}s`,
-      delay: `${Math.random() * 4}s`,
-    })),
-  [])
-
-  return (
-    <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-      {stars.map(s => (
-        <span
-          key={s.id}
-          className="star"
-          style={{ top: s.top, left: s.left, width: s.size, height: s.size, animationDuration: s.duration, animationDelay: s.delay }}
-        />
-      ))}
-    </div>
-  )
-}
 
 function FeatureCard({ icon, title, desc, neonClass, borderClass }) {
   return (
@@ -71,7 +45,6 @@ export default function Home() {
           overflow: 'hidden',
         }}
       >
-        <StarField />
         <UFO />
 
         <motion.p
