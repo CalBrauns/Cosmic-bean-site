@@ -1,18 +1,68 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion'
 
-const RIM_COLORS = ['#39ff14', '#bf00ff', '#ff0033', '#00bfff', '#39ff14', '#bf00ff', '#ff0033']
+const RIM_COLORS   = ['#39ff14', '#bf00ff', '#ff0033', '#00bfff', '#39ff14', '#bf00ff', '#ff0033']
+const TRAIL_COLORS = ['#39ff14', '#bf00ff', '#ff0033', '#00bfff']
 
 export default function UFO() {
-  const [beamOn, setBeamOn] = useState(false)
+  const [beamOn, setBeamOn]     = useState(false)
+  const [particles, setParticles] = useState([])
 
+  const xPos       = useMotionValue(-160)
+  const lastEmitX  = useRef(-999)
+  const cancelRef  = useRef(false)
+
+  // Fly left → right, loop forever
+  useEffect(() => {
+    cancelRef.current = false
+
+    const runLoop = async () => {
+      while (!cancelRef.current) {
+        xPos.set(-160)
+        await animate(xPos, window.innerWidth + 160, {
+          duration: 16,
+          ease: 'linear',
+        })
+        await new Promise(r => setTimeout(r, 250))
+      }
+    }
+
+    runLoop()
+    return () => { cancelRef.current = true }
+  }, [xPos])
+
+  // Emit particles as UFO moves
+  useEffect(() => {
+    const unsub = xPos.onChange(latest => {
+      if (Math.abs(latest - lastEmitX.current) < 10) return
+      lastEmitX.current = latest
+
+      const count = Math.random() > 0.45 ? 2 : 1
+      const burst = Array.from({ length: count }, (_, i) => ({
+        id: `${Date.now()}-${i}-${Math.random()}`,
+        // emit from left side of UFO (behind it as it moves right)
+        x: latest + Math.random() * 20,
+        y: 52 + (Math.random() - 0.5) * 18,
+        dx: -(Math.random() * 30 + 8),
+        dy: (Math.random() - 0.5) * 22,
+        color: TRAIL_COLORS[Math.floor(Math.random() * 4)],
+        size: Math.random() * 5 + 2.5,
+        dur:  0.7 + Math.random() * 0.5,
+      }))
+
+      setParticles(prev => [...prev.slice(-35), ...burst])
+    })
+    return unsub
+  }, [xPos])
+
+  // Tractor beam fires periodically
   useEffect(() => {
     const fire = () => {
       setBeamOn(true)
       setTimeout(() => setBeamOn(false), 3200)
     }
-    const first = setTimeout(fire, 1800)
-    const loop  = setInterval(fire, 7000)
+    const first = setTimeout(fire, 4500)
+    const loop  = setInterval(fire, 8000)
     return () => { clearTimeout(first); clearInterval(loop) }
   }, [])
 
@@ -20,17 +70,48 @@ export default function UFO() {
     <div
       style={{
         position: 'absolute',
-        top: 28,
-        left: 28,
-        zIndex: 2,
-        userSelect: 'none',
+        inset: 0,
         pointerEvents: 'none',
+        zIndex: 2,
+        overflow: 'hidden',
       }}
     >
+      {/* Particle trail */}
+      {particles.map(p => (
+        <motion.div
+          key={p.id}
+          initial={{ opacity: 0.9, scale: 1, x: 0, y: 0 }}
+          animate={{ opacity: 0, scale: 0.1, x: p.dx, y: p.dy }}
+          transition={{ duration: p.dur, ease: 'easeOut' }}
+          onAnimationComplete={() =>
+            setParticles(prev => prev.filter(pp => pp.id !== p.id))
+          }
+          style={{
+            position: 'absolute',
+            left: p.x,
+            top:  p.y,
+            width:  p.size,
+            height: p.size,
+            borderRadius: '50%',
+            background: p.color,
+            boxShadow: `0 0 6px ${p.color}, 0 0 12px ${p.color}`,
+          }}
+        />
+      ))}
+
+      {/* UFO */}
       <motion.div
-        animate={{ y: [0, -10, 0], rotate: [-1.5, 1.5, -1.5] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        style={{
+          position: 'absolute',
+          top: 32,
+          left: 0,
+          x: xPos,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+        animate={{ y: [0, -9, 0], rotate: [-1.5, 1.5, -1.5] }}
+        transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
       >
         {/* Glass dome */}
         <div
@@ -62,13 +143,11 @@ export default function UFO() {
             zIndex: 1,
           }}
         >
-          {/* Specular highlight strip */}
+          {/* Specular highlight */}
           <div
             style={{
               position: 'absolute',
-              top: '8%',
-              left: '14%',
-              right: '14%',
+              top: '8%', left: '14%', right: '14%',
               height: '26%',
               borderRadius: '50%',
               background: 'linear-gradient(to bottom, rgba(255,255,255,0.38), transparent)',
@@ -86,8 +165,7 @@ export default function UFO() {
                 top: '50%',
                 left: `${12 + i * 13}%`,
                 transform: 'translate(-50%, -50%)',
-                width: 7,
-                height: 7,
+                width: 7, height: 7,
                 borderRadius: '50%',
                 background: color,
                 boxShadow: `0 0 7px ${color}, 0 0 14px ${color}`,
@@ -95,6 +173,20 @@ export default function UFO() {
             />
           ))}
         </div>
+
+        {/* Engine glow */}
+        <motion.div
+          animate={{ opacity: [0.4, 0.8, 0.4], scaleX: [0.8, 1.1, 0.8] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            width: 60,
+            height: 10,
+            borderRadius: '50%',
+            background: 'radial-gradient(ellipse, rgba(57,255,20,0.7) 0%, rgba(0,191,255,0.3) 60%, transparent 100%)',
+            filter: 'blur(3px)',
+            marginTop: -4,
+          }}
+        />
 
         {/* Tractor beam */}
         <AnimatePresence>
@@ -118,6 +210,7 @@ export default function UFO() {
                   'linear-gradient(to bottom, rgba(57,255,20,0.8) 0%, rgba(57,255,20,0.38) 55%, rgba(57,255,20,0) 100%)',
                 clipPath: 'polygon(33% 0%, 67% 0%, 100% 100%, 0% 100%)',
                 filter: 'blur(5px)',
+                marginTop: -6,
               }}
             />
           )}
